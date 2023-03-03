@@ -4,6 +4,14 @@ import 'dart:io';
 
 import 'package:mockito/mockito.dart';
 
+void mockDefaultNetworkSvg(Uint8List defaultSvg) {
+  svgImage = defaultSvg;
+}
+
+void mockDefaultNetworkImage(Uint8List defaultImage) {
+  image = defaultImage;
+}
+
 /// Runs [body] in separate [Zone] with [MockHttpClient].
 R mockNetworkImagesFor<R>(R body()) {
   return HttpOverrides.runZoned(
@@ -123,11 +131,11 @@ void mockRequestResponse({
 }
 
 //transparent pixel in png format
-final image = base64Decode(
+Uint8List image = base64Decode(
   "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==",
 );
 
 //one pixel in svg format
-final svgImage = base64Decode(
+Uint8List svgImage = base64Decode(
   "PHN2ZyBoZWlnaHQ9IjEiIHdpZHRoPSIxIj48L3N2Zz4=",
 );
